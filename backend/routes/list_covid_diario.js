@@ -10,7 +10,7 @@ router.route('/').get((req, res) => {
   
   const pageOptions = {
     page: parseInt(req.query.page) || 0,
-    limit: parseInt(req.query.limit, 10) || 5000
+    limit: parseInt(req.query.limit, 10) || 10000
 }
 
 Lista.find()
@@ -25,7 +25,12 @@ Lista.find()
 
 
 
-
+// router.get('/', async(req, res) => {
+//     const page = parseInt(req.query.page) || 1;
+//     // const limit = req.querry.page || 1;
+//     const list = await Lista.paginate({}, {page});
+//     res.json(list);
+// });
 
 
 

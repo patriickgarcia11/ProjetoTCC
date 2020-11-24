@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Row, Col, Container } from 'reactstrap';
+
 
 export default class CreateFeedback extends Component {
   constructor(props) {
@@ -21,8 +21,10 @@ export default class CreateFeedback extends Component {
       date: new Date(),
       users: []
     }
+    
   }
-
+ 
+  
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -48,6 +50,7 @@ export default class CreateFeedback extends Component {
     })
   }
 
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -58,17 +61,15 @@ export default class CreateFeedback extends Component {
       date: this.state.date
     }
 
-    console.log(feedback);
 
     axios.post('http://localhost:5000/feedback/add', feedback)
-      .then(res => console.log(res.data));
-
-    window.location = '/';
+      .then(res => console.log(res.data), alert('Feedback enviado com sucesso!'));
+    window.location = '/create';
   }
 
   render() {
     return (
-    <Container className="themed-container" fluid={true}>
+    <Container className="alinfeedback" fluid={true}>
       <Row>
       <Col sm="12" md={{ size: 6, offset: 3 }}>
       <h3>Deixe seu Feedback</h3>
@@ -100,15 +101,6 @@ export default class CreateFeedback extends Component {
               onChange={this.onChangeDescription}
               />
         </div>
-        {/* <div className="form-group">
-          <label>Data: </label>
-          <div>
-            <DatePicker
-              selected={this.state.date}
-              onChange={this.onChangeDate}
-            />
-          </div>
-        </div> */}
 
         <div className="form-group">
           <input type="submit" value="Enviar" className="btn btn-primary" />
@@ -117,6 +109,7 @@ export default class CreateFeedback extends Component {
       </Col>
       </Row>
     </Container>
+    
     )
   }
 }

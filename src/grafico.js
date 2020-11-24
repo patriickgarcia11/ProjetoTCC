@@ -1,51 +1,58 @@
-import React, {useState, useEffect } from 'react';
-import axios from "axios"
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from 'recharts';
 
+import React from 'react';
+import axios from "axios";
 
-const ListaDiaria = () => {
-    const [cidades, setCidade] = useState([]);
-    // const [loading, setLoading] = useState(false);
-  
-    const getListadata = async () => {
-        try {
-            const data = await axios.get(
-                "http://localhost:5000/lista_diaria/"
-                );
-                console.log(data);
-                setCidade(data.data);
-                // setLoading(true);
-  
-        } catch (e) {
-            console.log(e);
-        }
-    };
+import { Line, XAxis, YAxis, Legend, Tooltip, LineChart, CartesianGrid } from 'recharts';
+export default class ListaDiaria extends React.Component {
 
-const columns = ["cidade", "data", "casos", "mortes"];
+  state = {
+    cidades: [],
+    colunas: ["cidade", "data", "casos", "mortes"],
+  };
 
-useEffect(() => {
-    getListadata();
-}, []);
+  constructor(props) {
+    super(props);
+    
+    this.refresh();
+  }
 
+  filter = (data, column, value) => {
+    const cidades = [];
+
+    Object.keys(data).forEach(key => {
+      if (data[key][column] === value) {
+        cidades.push(data[key]);
+      }
+    });
+
+    return cidades;
+  };
+
+  refresh = () => {
+
+    axios.get("http://localhost:5000/lista_diaria/")
+      .then(res => {
+        let data = res.data;
+
+        this.setState({ cidades: data });
+      })
+      .catch(err => console.error(err));
+  };
+
+  render() {
+
+    const { cidades, colunas } = this.state;
 
     return (
       <LineChart
         width={800}
         height={600}
         data={cidades}
-        columns={columns}
+        columns={colunas}
         margin={{top: 5, right: 30, left: 20, bottom: 5}}
         >
         <Line
-          type=''
+          type='cidade'
           dataKey='casos'
           stroke='#FF8C00'
           activeDot={{r: 8}}
@@ -53,11 +60,11 @@ useEffect(() => {
         <CartesianGrid strokeDasharray='4 4'/>
         <Tooltip/>
         <YAxis/>
-        <XAxis dataKey='cidade'/>
+        <XAxis dataKey='data'/>
+        <Line  name="Cidade"type="monotone" dataKey="cidade" stroke="#FF8C00" />
+        <XAxis type="number" domain={['dataMin', 'dataMax']} />
         <Legend />
       </LineChart>
     );
-  
+  }
 }
-
-export default ListaDiaria;

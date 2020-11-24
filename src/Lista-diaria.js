@@ -18,10 +18,7 @@ const ListaDiaria = () => {
 
   const getListadata = async () => {
       try {
-          const data = await axios.get(
-              "http://localhost:5000/lista_diaria/"
-              );
-              console.log(data);
+          const data = await axios.get("http://localhost:5000/lista_diaria/");
               setCidade(data.data);
               setLoading(true);
 
@@ -30,12 +27,6 @@ const ListaDiaria = () => {
       }
   };
 
-//   const columns = [
-//       {dataField: "cidade", text: "cidade"},
-//       {dataField: "data", text: "data"},
-//       {dataField: "casos", text: "casos"},
-//       {dataField: "mortes", text: "mortes"}
-//   ];
 
 const columns = ["cidade", "data", "casos", "mortes"];
 
@@ -44,9 +35,6 @@ const columns = ["cidade", "data", "casos", "mortes"];
       getListadata();
   }, []);
 
-//   const options = {
-//     filterType: 'checkbox',
-//   };
   
 
     return (
@@ -54,24 +42,14 @@ const columns = ["cidade", "data", "casos", "mortes"];
     <div>
         <section>
         <List1>
-          <h3>Lista de casos diarios</h3>
+          <h3>Lista De Casos e Mortes</h3>
         </List1>
         </section>
         
             <Col>
-        
-        {/* {loading ? (
-        <BootstrapTable 
-        keyField="cidade"
-        data = {cidades}
-        columns={columns}
-        pagination={paginationFactory()}
-        />) : (
-            <Spinner color="primary" />
-        )} */}
-
 {loading ? (
         <MUIDataTable 
+        keyField="cidade"
         data={cidades} 
         columns={columns} 
         />) : (

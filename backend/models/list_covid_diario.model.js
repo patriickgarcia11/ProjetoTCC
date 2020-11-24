@@ -11,8 +11,6 @@ const listcoviddiarioSchema = new Schema({
 
 });
 
-const Lista = mongoose.model("Covid_historico", listcoviddiarioSchema);
+const Lista = mongoose.model("Covid_diarios", listcoviddiarioSchema);
 
 module.exports = Lista;
-
-

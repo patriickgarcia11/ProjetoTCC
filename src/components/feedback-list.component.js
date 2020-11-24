@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Container, Row, Col } from 'reactstrap';
 
 
+
+
 const Feedback = props => (
   <tr>
     <td>{props.feedback.username}</td>
@@ -37,7 +39,7 @@ export default class FeedbackList extends Component {
 
   render() {
     return (
-      <Container className="themed-container" fluid={true}>
+      <Container className="themed-container" fluid={false}>
         <Row>
         <Col>
         <h3>Lista dos feedbacks</h3>

@@ -18,14 +18,15 @@ import CreateFeedback from "./components/create-feedback.component";
 import { Footers } from './styles';
 
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem, 
-  Row, 
-  Col
+Collapse,
+Navbar,
+NavbarToggler,
+NavbarBrand,
+Nav,
+NavItem, 
+Row, 
+Col,
+Container
 } from 'reactstrap';
 
 
@@ -36,28 +37,28 @@ const App = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Row>
-        <Col>
-      <Navbar className="bg-dark" light expand="md">
-        <NavbarBrand className="nav-item nav-link" to="page1"><i className="fas fa-hospital-user"></i>&nbsp;Saúde e Mapeamento</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-            <Link className="nav-item nav-link" to="page1">Inicio</Link>
-            </NavItem>
-            <NavItem>
-            <Link className="nav-item nav-link" to="page2">Dicas</Link>
-            </NavItem>
-            <NavItem>
-            <Link className=" nav-item nav-link" to="create">Feedback</Link>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-      </Col>
-      </Row>
+        <Container className="bg-container">
+          <Row>
+          <Col>
+          <Navbar className="bg-dark" light expand="md">
+            <NavbarBrand className="nav-item nav-link" to="page1"><i className="fas fa-hospital-user"></i>&nbsp;Saúde e Mapeamento</NavbarBrand>
+            <NavbarToggler onClick={toggle} />
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto" navbar>
+                <NavItem>
+                <Link className="nav-item nav-link" to="page1">Inicio</Link>
+                </NavItem>
+                <NavItem>
+                <Link className="nav-item nav-link" to="page2">Dicas</Link>
+                </NavItem>
+                <NavItem>
+                <Link className=" nav-item nav-link" to="create">Feedback</Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+          </Col>
+          </Row>
       
 
         <main>
@@ -71,13 +72,15 @@ const App = (props) => {
         </main>
 
 
-
+        <Row>
+          <Col>
         <Footers className="bg-dark">
-
-            <p>©2020 Todos os direitos reservados.</p>
-
-        </Footers>
-      </div>
+          <p>©2020 Todos os direitos reservados.</p>
+          </Footers>
+          </Col>
+        </Row>
+        
+      </Container>
     
   );
 };

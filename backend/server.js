@@ -21,12 +21,18 @@ connection.once('open', () => {
 })
 
 const feedbackRouter = require('./routes/feedback');
-const mapaRouter = require('./routes/list_covid_diario');
+const listdiarioRouter = require('./routes/list_covid_diario');
+const previsoescovidRouter = require('./routes/list.previsoes');
+const historicoRouter = require('./routes/list_historico');
+
 
 
 
 app.use('/feedback', feedbackRouter);
-app.use('/lista_diaria', mapaRouter);
+app.use('/lista_diaria', listdiarioRouter);
+app.use('/previsoes_covid', previsoescovidRouter);
+app.use('/list_historico', historicoRouter);
+
 
 
 

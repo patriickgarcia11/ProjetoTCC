@@ -5,7 +5,9 @@ import {
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
-    CarouselCaption
+    CarouselCaption,
+    Col,
+    Row
   } from 'reactstrap';
 
   import { Maps, Graficos } from './styles';
@@ -15,8 +17,9 @@ import {
   import slide03 from './Photos/img-3.jpg';
 
   // import Listcoviddiario from "./components/list_covid_diario.component";
-  import Listcoviddiario from "./Lista-diaria";
-  import Grafico from "./grafico"
+  import Listcoviddiario from './Lista-diaria';
+  import Grafico from './grafico'; 
+  import Previsoes from './previsoes_grafico';
  
   
 
@@ -25,18 +28,18 @@ import {
   const items = [
     {
       src: slide01,
-      altText: 'Slide 1',
-      caption: 'Slide 1'
+      altText: 'Saúde e Mapeamento',
+      caption: 'Saúde e Mapeamento'
     },
     {
       src: slide02,
-      altText: 'Slide 2',
-      caption: 'Slide 2'
+      altText: 'Mantenha Suas Mãos Higienizadas',
+      caption: 'Mantenha Suas Mãos Higienizadas'
     },
     {
       src: slide03,
-      altText: 'Slide 3',
-      caption: 'Slide 3'
+      altText: 'Lave Bem Suas Mascaras',
+      caption: 'Lave Bem Suas Mascaras'
     }
   ];
   
@@ -63,16 +66,18 @@ import {
   
     const slides = items.map((item) => {
       return (
-        <CarouselItem
+
+       <CarouselItem
           className="custom-tag"
           tag="div"
-          key={item.src}
           onExiting={() => setAnimating(true)}
           onExited={() => setAnimating(false)}
-        >
-            <img src={item.src} alt={item.altText} />
-          <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
-        </CarouselItem>
+          key={item.src}
+       >
+       <img src={item.src} alt={item.altText} />
+       <CarouselCaption  captionHeader={item.caption} />
+       </CarouselItem>
+        
       );
     });
   
@@ -82,7 +87,7 @@ import {
           {
             `.custom-tag {
                 max-width: 100%;
-                height: 853px;
+                height: 840px;
                 background: black;
                 text-align: center;
               }`
@@ -118,7 +123,11 @@ import {
           <h3>Graficos</h3>
         </Graficos>
         </section>
-         <Grafico />
+        <Row> 
+
+        <Col xs="6"><Grafico /></Col>
+        <Col xs="6"><Previsoes /></Col>
+        </Row>
       </div>
     );
   }
