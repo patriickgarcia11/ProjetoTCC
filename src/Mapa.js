@@ -10,8 +10,6 @@ function Mapa(props){
 
             var map = document.getElementById("map");
             var svgDoc = map.contentDocument;
-            
-            // let maxCases = Math.max.apply(Math, cities.map(function(city) { return city.casos; }))
           
             cities.forEach((city) => {
                 let cityName = city._id.replace(/\ /g, '_');
@@ -63,11 +61,9 @@ function Mapa(props){
 
     return(
         <Container> 
-            
-            {/* <img src={mapa} width="100%" height="1000vh" /> */}
             <Row style={{
                 position: "absolute",
-                left: "400px",
+                left: "350px",
                 marginTop: "30px",
                 background: "white",
                 padding: "20px",
@@ -75,33 +71,33 @@ function Mapa(props){
                 display: "none"
             }} id="map-popup">Cidade: São Paulo. Casos: 0.</Row>
                 
-            <div style={{background:"#FFF", position: "absolute", left: "400px", marginTop:"500px", padding:"10px"}}>
+            <div style={{background:"#FFF", position: "absolute", left: "350px", marginTop:"500px", padding:"10px"}}>
                 <tr style={{textAlign:"center"}}>
-                    <td colSpan="2">Casos</td>
+                    <td colSpan="2">Densidade Demográfica</td>
                 </tr>
                 <tr>
-                    <td style={{background:"#ffdfd4", width:"10px", height:"1vh",}}></td>
-                    <td>0-99</td>
+                    <td style={{background:"#ffdfd4", width:"10px", height:"1vh", paddingRight:"15px"}}></td>
+                    <td style={{paddingLeft: "10px"}}>0-99</td>
                 </tr>
                 <tr>
-                    <td style={{background:"#E9967A", width:"10px", height:"1vh"}}></td>
-                    <td>100-999</td>
+                    <td style={{background:"#E9967A", width:"10px", height:"1vh", paddingRight:"15px"}}></td>
+                    <td style={{paddingLeft: "10px"}}>100-999</td>
                 </tr>
                 <tr>
-                    <td style={{background:"#FA8072", width:"10px", height:"1vh"}}></td>
-                    <td>1000-9999</td>
+                    <td style={{background:"#FA8072", width:"10px", height:"1vh", paddingRight:"15px"}}></td>
+                    <td style={{paddingLeft: "10px"}}>1000-9999</td>
                 </tr>
                 <tr>
-                    <td style={{background:"#A52A2A", width:"10px", height:"1vh"}}></td>
-                    <td>10000-49999</td>
+                    <td style={{background:"#A52A2A", width:"10px", height:"1vh", paddingRight:"15px"}}></td>
+                    <td style={{paddingLeft: "10px"}}>10000-49999</td>
                 </tr>
                 <tr>
-                    <td style={{background:"#8B0000", width:"10px", height:"1vh"}}></td>
-                    <td>50000+ </td>
+                    <td style={{background:"#8B0000", width:"10px", height:"1vh", paddingRight:"15px"}}></td>
+                    <td style={{paddingLeft: "10px"}}>50000+ </td>
                 </tr>
             </div>
             
-            <object data="/mapa.svg" type="image/svg+xml" id="map" width="100%" height="100%"> </object>
+            <object   data="/mapa.svg" type="image/svg+xml" id="map" width="1200px" height="100%"> </object>
 
         </Container>
     )

@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from "axios";
 
+
 import { Line, XAxis, YAxis, Legend, Tooltip, LineChart, CartesianGrid } from 'recharts';
 export default class ListaDiaria extends React.Component {
 
@@ -44,6 +45,7 @@ export default class ListaDiaria extends React.Component {
     const { cidades, colunas } = this.state;
 
     return (
+      
       <LineChart
         width={800}
         height={600}
@@ -62,9 +64,9 @@ export default class ListaDiaria extends React.Component {
         <YAxis/>
         <XAxis dataKey='data'/>
         <Line  name="Cidade"type="monotone" dataKey="cidade" stroke="#FF8C00" />
-        <XAxis type="number" domain={['dataMin', 'dataMax']} />
         <Legend />
       </LineChart>
+      
     );
   }
 }

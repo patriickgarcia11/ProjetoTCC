@@ -1,64 +1,62 @@
 import React, { useState, useEffect} from "react";
+import MUIDataTable from "mui-datatables";
+import { List1 } from "./styles"
+import { Col } from 'reactstrap';
 import "./App.css";
 import axios from "axios"
-// import BootstrapTable from "react-bootstrap-table-next";
-// import paginationFactory from "react-bootstrap-table2-paginator";
-import { Col, Container, Spinner } from 'reactstrap';
 
-import MUIDataTable from "mui-datatables";
+export default class ListaDiaria extends React.Component {
 
-
-
-import { List1 } from "./styles"
-
-
-const ListaDiaria = () => {
-  const [cidades, setCidade] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const getListadata = async () => {
-      try {
-          const data = await axios.get("http://localhost:5000/lista_diaria/");
-              setCidade(data.data);
-              setLoading(true);
-
-      } catch (e) {
-          console.log(e);
-      }
-  };
-
-
-const columns = ["cidade", "data", "casos", "mortes"];
-
-
-  useEffect(() => {
-      getListadata();
-  }, []);
-
+    state = {
+      cidades: [],
+      colunas: ["cidade", "data", "casos", "mortes"],
+    };
   
+    constructor(props) {
+      super(props);
+      
+      this.refresh();
+    }
+  
+    filter = (data, column, value) => {
+      const cidades = [];
+  
+      Object.keys(data).forEach(key => {
+            if (data[key][column] === value) {
+            cidades.push(data[key]);
+            }
+      });
+  
+      return cidades;
+    };
+  
+    refresh = () => {
+
+      axios.get("http://localhost:5000/lista_diaria/")
+        .then(res => {
+          let data = res.data;
+  
+          this.setState({ cidades: data });
+        })
+        .catch(err => console.error(err));
+    };
+
+    render() {
+    const { cidades, colunas } = this.state;
 
     return (
-        
-    <div>
-        <section>
-        <List1>
-          <h3>Lista De Casos e Mortes</h3>
-        </List1>
-        </section>
-        
-            <Col>
-{loading ? (
-        <MUIDataTable 
-        keyField="cidade"
-        data={cidades} 
-        columns={columns} 
-        />) : (
-            <Spinner color="primary" />
-        )}
-        </Col>
-        
-    </div>
-    );
-}
+        <div>
+            <section>
+                <List1>
+                    <h3>Lista De Casos e Mortes Diários</h3>
+                </List1>
+            </section>
 
-export default ListaDiaria;
+    <Col>
+        <MUIDataTable keyField="cidade" data={cidades} columns={colunas} />
+    </Col>
+
+        </div>
+    );
+        }
+    }

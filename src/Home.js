@@ -1,29 +1,13 @@
 import React,{ useState } from 'react';
 import Mapa from './Mapa';
-import {
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators,
-    CarouselCaption,
-    Col,
-    Row
-  } from 'reactstrap';
-
-  import { Maps, Graficos } from './styles';
-
-  import slide01 from './Photos/img-1.jpg';
-  import slide02 from './Photos/img-2.jpg';
-  import slide03 from './Photos/img-3.jpg';
-
-  // import Listcoviddiario from "./components/list_covid_diario.component";
-  import Listcoviddiario from './Lista-diaria';
-  import Grafico from './grafico'; 
-  import Previsoes from './previsoes_grafico';
- 
-  
-
-  
+import {Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, Col, Row} from 'reactstrap';
+import { Maps, Graficos } from './styles';
+import slide01 from './Photos/img-1.jpg';
+import slide02 from './Photos/img-2.jpg';
+import slide03 from './Photos/img-3.jpg';
+import Listcoviddiario from './Lista-diaria';
+import Grafico from './grafico'; 
+import Previsoes from './previsoes_grafico';
   
   const items = [
     {
@@ -110,21 +94,14 @@ import {
           <h2>Mapa De São Paulo</h2>
         </Maps>
         <Mapa/>
-       
         </section>
-        
-        {/* Termina Aqui */}
-
         <Listcoviddiario />
-
-        {/* graficos */}
         <section>
         <Graficos>
           <h3>Graficos</h3>
         </Graficos>
         </section>
-        <Row> 
-
+        <Row>
         <Col xs="6"><Grafico /></Col>
         <Col xs="6"><Previsoes /></Col>
         </Row>

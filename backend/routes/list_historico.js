@@ -10,20 +10,7 @@ router.route('/').get((req, res) => {
 }
 
 
-
-// Historico.find()
-//     .skip(pageOptions.page * pageOptions.limit)
-//     .limit(pageOptions.limit)
-//     .exec(function (err, doc) {
-//         if(err) { res.status(500).json(err); return; };
-//         res.status(200).json(doc);
-//     });
-// });
-
-
 Historico.aggregate([{"$group":{"_id":"$cidade", "casos": {"$max":"$casos"}}}])
-    // .skip(pageOptions.page * pageOptions.limit)
-    // .limit(pageOptions.limit)
     .exec(function (err, doc) {
         if(err) { res.status(500).json(err); return; };
         res.status(200).json(doc);

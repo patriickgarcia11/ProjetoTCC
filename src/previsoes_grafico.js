@@ -1,47 +1,54 @@
 import React, {useState, useEffect } from 'react';
 import axios from "axios"
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from 'recharts';
 
 
-const Previsoes = () => {
-    const [cidades, setCidade] = useState([]);
-    // const [loading, setLoading] = useState(false);
-  
-    const getListadata = async () => {
-        try {
-            const data = await axios.get(
-                "http://localhost:5000/previsoes_covid/"
-                );
-                console.log(data);
-                setCidade(data.data);
-                // setLoading(true);
-  
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-const columns = ["cidade", "data", "casos", "mortes"];
-
-useEffect(() => {
-    getListadata();
-}, []);
 
 
+import { Line, XAxis, YAxis, Legend, Tooltip, LineChart, CartesianGrid } from 'recharts';
+export default class Previsoes extends React.Component {
+
+  state = {
+    cidades: [],
+    colunas: ["cidade", "data", "casos", "mortes"],
+  };
+
+  constructor(props) {
+    super(props);
+    
+    this.refresh();
+  }
+
+  filter = (data, column, value) => {
+    const cidades = [];
+
+    Object.keys(data).forEach(key => {
+      if (data[key][column] === value) {
+        cidades.push(data[key]);
+      }
+    });
+
+    return cidades;
+  };
+
+  refresh = () => {
+
+    axios.get("http://localhost:5000/previsoes_covid/")
+      .then(res => {
+        let data = res.data;
+
+        this.setState({ cidades: data });
+      })
+      .catch(err => console.error(err));
+  };
+
+render () {
+  const { cidades, colunas } = this.state;
     return (
       <LineChart
         width={800}
         height={600}
         data={cidades}
-        columns={columns}
+        columns={colunas}
         margin={{top: 5, right: 30, left: 20, bottom: 5}}
         >
         <Line
@@ -65,11 +72,6 @@ useEffect(() => {
         <Line  type="" dataKey="cidade" stroke="#4B0082" />
         <Legend />
       </LineChart>
-
-
-
     );
-  
 }
-
-export default Previsoes;
+}
