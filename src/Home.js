@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 import Mapa from './Mapa';
-import {Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, Col, Row} from 'reactstrap';
+import {Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, Col, Row, Badge } from 'reactstrap';
 import { Maps, Graficos } from './styles';
 import slide01 from './Photos/img-1.jpg';
 import slide02 from './Photos/img-2.jpg';
@@ -98,12 +98,18 @@ import Previsoes from './previsoes_grafico';
         <Listcoviddiario />
         <section>
         <Graficos>
-          <h3>Graficos</h3>
+          <h3>Gráficos</h3>
         </Graficos>
         </section>
         <Row>
-        <Col xs="6"><Grafico /></Col>
-        <Col xs="6"><Previsoes /></Col>
+        <Col xs="6">
+        <Badge color="secondary"> Índices Dos Casos Diários</Badge>
+          <Grafico />
+          </Col>
+        <Col xs="6">
+        <Badge color="secondary"> Previsão De Casos e Mortes Diárias</Badge>
+          <Previsoes />
+          </Col>
         </Row>
       </div>
     );

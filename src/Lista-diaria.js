@@ -55,7 +55,7 @@ export default class ListaDiaria extends React.Component {
     <Col>
         <MUIDataTable keyField="cidade" data={cidades} columns={colunas} />
     </Col>
-
+    <h6 tag="h6" className="mb-2 text-muted">Fonte: Brasil.io</h6>
         </div>
     );
         }
